@@ -342,7 +342,7 @@
     }
      
 
-void merge(vector<vector<Point*>> &ans, vector<Point*> inp){
+void merge(vector<vector<Point*>> &ans, vector<Point*> inp, vector<vector<Point*>>& ans){
     vector<pair<Point *, Point*>> LLE;  //every diagonal of partition
     vector<vector<pair<int, Point*>>> LP; //contains every point contains in each polygon
     vector<bool> LDP;  //true if polygon is merged 
@@ -395,7 +395,15 @@ void merge(vector<vector<Point*>> &ans, vector<Point*> inp){
             int ind = map[vt], pol; 
             for(int j=0; j<LP[ind].size(); j++) {if(LP[j].second == vs){ pol = LP[j].first}  else continue;  }   //3.2.2  
             j1 = Prev(vt, ans[pol]);  i3 = Next(vs, ans[pol]);                       //3.2.3
-            if(isAcute(i1, i2, i3) && isAcute(j1,j2,j3)) NP++;                   
+            if(isAcute(i1, i2, i3) && isAcute(j1,j2,j3)) NP++; 
+            //3.2.4 write part
+            vector<Point*> poly1 = ans[i];
+            vector<Point*> poly2 = ans[u];
+            vector<Point*> poly3;
+            set<Point*> s; 
+            for(int j=0;j<poly1.size();j++){s.insert(poly1[i]);} 
+
+
             LDP[i] = false; LDP[pol] = false; LDP[NP] =true;                                                      
             LUP[i] = NP; LUP[pol]  = NP; 
             for(k=0; k<NP-1; k++)   {
