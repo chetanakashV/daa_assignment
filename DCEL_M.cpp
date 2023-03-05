@@ -401,7 +401,10 @@ void merge(vector<vector<Point*>> &ans, vector<Point*> inp, vector<vector<Point*
             vector<Point*> poly2 = ans[u];
             vector<Point*> poly3;
             set<Point*> s; 
-            for(int j=0;j<poly1.size();j++){s.insert(poly1[i]);} 
+            for(int j=0;j<poly1.size();j++){s.insert(poly1[j]);}
+            for(int j=0;j<poly2.size();j++){s.insert(poly2[j]);}
+            for(int j=0;j<s.size();j++){poly3.push_back(s[j]);}
+            ans[NP-1] = poly3; 
 
 
             LDP[i] = false; LDP[pol] = false; LDP[NP] =true;                                                      
